@@ -67,8 +67,7 @@ def load_config():
 def build_msal_app(config, cache = None):
     return msal.ConfidentialClientApplication(
         config['client_id'],
-        authority="https://login.microsoftonline.com/" + config['tenant_id'],
-        client_credential=config['client_secret'], token_cache=cache)
+        authority="https://login.microsoftonline.com/" + config['tenant_id'], token_cache=cache)
 
 def get_auth_url(config, cache, state):
     return build_msal_app(config, cache).get_authorization_request_url(
@@ -103,8 +102,7 @@ def validate_config(config):
         "redirect_host" in config,
         "redirect_port" in config,
         "redirect_path" in config,
-        "scopes" in config,
-        "client_secret" in config
+        "scopes" in config
     ]
 
     return all(conditions)
